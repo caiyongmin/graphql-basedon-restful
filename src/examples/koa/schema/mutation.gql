@@ -1,0 +1,4 @@
+type Mutation {
+  # TODO: just for test, need delete
+  id: Int
+}

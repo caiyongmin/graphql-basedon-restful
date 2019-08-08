@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "copy-schemas": "$(npm bin)/cpx src/**/*.gql dist",
+    "build": "rm -rf dist && tsc && npm run copy-schemas",
+    "start": "npm run build && node dist/json-server/server.js",
+    "example:koa": "npm run build && node dist/examples/koa/app.js"
+  },
+  "dependencies": {
+    "apollo-server-koa": "~2.8.1",
+    "axios": "~0.19.0",
+    "graphql": "~14.4.2",
+    "graphql-tag": "~2.10.1",
+    "graphql-tools": "~4.0.5",
+    "koa": "~2.7.0",
+    "lodash": "~4.17.15",
+    "merge-graphql-schemas": "~1.7.0"
+  },
+  "devDependencies": {
+    "@types/json-server": "^0.14.0",
+    "@types/koa": "^2.0.49",
+    "cpx": "^1.5.0",
+    "json-server": "^0.15.0",
+    "typescript": "~3.5.3"
+  }
+}

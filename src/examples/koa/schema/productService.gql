@@ -1,0 +1,27 @@
+directive @rest(endpoint: String path: String) on FIELD_DEFINITION
+
+type Product {
+  id: Int
+  title: String
+  description: String
+  price: Float
+}
+
+extend type Order {
+  product: Product
+}
+
+extend type User {
+  collections: [Product]
+}
+
+extend type Query {
+  product(productId: Int!): Product @rest(
+    endpoint: "endpoint2001"
+    path: "/products/:productId"
+  )
+  products(productIds: [Int]): [Product] @rest(
+    endpoint: "endpoint2001"
+    path: "/products"
+  )
+}

@@ -1,0 +1,24 @@
+directive @rest(endpoint: String path: String) on FIELD_DEFINITION
+
+type Order {
+  id: Int
+}
+
+extend type User {
+  orders: [Order]
+}
+
+extend type Product {
+  orders: [Order]
+}
+
+extend type Query {
+  order(orderId: Int!): Order @rest(
+    endpoint: "endpoint2001"
+    path: "/orders/:orderId"
+  )
+  orders(orderIds: [Int]): [Order] @rest(
+    endpoint: "endpoint2001"
+    path: "/orders"
+  )
+}

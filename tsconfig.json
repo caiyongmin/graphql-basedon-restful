@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "pretty": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "lib": ["es6", "dom", "esnext", "es2015"],
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["./src/**/*", "./src/**/*.json"],
+  "exclude": ["node_modules", "dist"]
+}
