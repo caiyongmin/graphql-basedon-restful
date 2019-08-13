@@ -8,8 +8,8 @@ type Order = {
   id: string;
   created: string;
   price: number;
-  user?: User;
-  product?: Product;
+  user: User['id'];
+  product: Product['id'];
 };
 
 type Product = {

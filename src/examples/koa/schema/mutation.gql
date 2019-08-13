@@ -1,4 +1,4 @@
 type Mutation {
-  # TODO: just for test, need delete
+  # TODO: just for set root field, need delete
   id: Int
 }

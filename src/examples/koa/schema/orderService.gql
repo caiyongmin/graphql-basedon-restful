@@ -1,15 +1,35 @@
-directive @rest(endpoint: String path: String) on FIELD_DEFINITION
+directive @rest(
+  endpoint: String
+  path: String
+  method: String
+  responseAccessor: String
+) on FIELD_DEFINITION
 
 type Order {
   id: Int
+  created: Int
+  price: Float
 }
 
 extend type User {
-  orders: [Order]
+  orders(userId: Int!): [Order] @rest(
+    endpoint: "endpoint2001"
+    path: "/users/:userId/orders"
+  )
 }
 
 extend type Product {
-  orders: [Order]
+  orders(productId: Int!): [Order] @rest(
+    endpoint: "endpoint2001"
+    path: "/products/:productId/orders"
+  )
+}
+
+input OrderInput {
+  created: Int!
+  price: Float!
+  userId: Int
+  productId: Int
 }
 
 extend type Query {
@@ -17,8 +37,22 @@ extend type Query {
     endpoint: "endpoint2001"
     path: "/orders/:orderId"
   )
-  orders(orderIds: [Int]): [Order] @rest(
+  orders: [Order] @rest(
     endpoint: "endpoint2001"
     path: "/orders"
   )
 }
+
+extend type Mutation {
+  createOrder(body: OrderInput): Order @rest(
+    endpoint: "endpoint2001"
+    path: "/orders"
+    method: "post"
+  )
+  updateOrder( orderId: Int! body: OrderInput ): Order @rest(
+    endpoint: "endpoint2001"
+    path: "/orders/:orderId"
+    method: "patch"
+  )
+}
+

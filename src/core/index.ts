@@ -4,10 +4,11 @@ import { fileLoader, mergeTypes } from 'merge-graphql-schemas';
 import { makeExecutableSchema } from 'graphql-tools';
 import RestDirective from './directives/rest';
 
-export function ApolloCore(params: {
-  schemaDir: string
+export function createApolloServer(params: {
+  schemaDir: string;
+  endpointMap: { [key: string]: string }
 }) {
-  const { schemaDir } = params;
+  const { schemaDir, endpointMap } = params;
   const typesArray = fileLoader(schemaDir, { recursive: true });
   const typeDefs = mergeTypes(typesArray, { all: true });
   const schema: GraphQLSchema = makeExecutableSchema({
@@ -19,5 +20,8 @@ export function ApolloCore(params: {
 
   return new ApolloServer({
     schema,
+    context: ({ req }) => ({
+      endpointMap
+    }),
   });
 };

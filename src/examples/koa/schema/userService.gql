@@ -1,4 +1,9 @@
-directive @rest(endpoint: String path: String) on FIELD_DEFINITION
+directive @rest(
+  endpoint: String
+  path: String
+  method: String
+  responseAccessor: String
+) on FIELD_DEFINITION
 
 type User {
   id: Int
@@ -6,11 +11,24 @@ type User {
 }
 
 extend type Order {
-  user: User
+  user(orderId: Int!): User @rest(
+    endpoint: "endpoint2001"
+    path: "/orders/:orderId/users"
+    responseAccessor: "[0]"
+  )
 }
 
 extend type Product {
-  users: [User]
+  users(productId: Int!): [User] @rest(
+    endpoint: "endpoint2001"
+    path: "/products/:productId/users"
+  )
+}
+
+input UserInput {
+  name: String!
+  orderId: Int
+  productId: Int
 }
 
 extend type Query {
@@ -18,8 +36,21 @@ extend type Query {
     endpoint: "endpoint2001"
     path: "/users/:userId"
   )
-  users(userIds: [Int]): [User] @rest(
+  users: [User] @rest(
     endpoint: "endpoint2001"
     path: "/users"
+  )
+}
+
+extend type Mutation {
+  createUser(body: UserInput): User @rest(
+    endpoint: "endpoint2001"
+    path: "/users"
+    method: "post"
+  )
+  updateUser( userId: Int! body: UserInput ): User @rest(
+    endpoint: "endpoint2001"
+    path: "/users/:userId"
+    method: "patch"
   )
 }

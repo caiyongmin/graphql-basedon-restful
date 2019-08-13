@@ -1,9 +1,11 @@
 import Koa from 'koa';
-import { ApolloCore } from './../../core/index';
+import { createApolloServer } from './../../core/index';
 import path from 'path';
+import { endpointMap } from './config';
 
-const server = ApolloCore({
+const server = createApolloServer({
   schemaDir: path.join(__dirname, './schema'),
+  endpointMap,
 });
 const app = new Koa();
 server.applyMiddleware({ app });

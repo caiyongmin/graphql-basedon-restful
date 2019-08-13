@@ -1,4 +1,4 @@
 type Query {
-  # TODO: just for test, need delete
-  id: Int 
+  # TODO: just for set root field, need delete
+  id: Int
 }

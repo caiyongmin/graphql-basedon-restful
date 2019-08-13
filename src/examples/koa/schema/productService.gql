@@ -1,4 +1,9 @@
-directive @rest(endpoint: String path: String) on FIELD_DEFINITION
+directive @rest(
+  endpoint: String
+  path: String
+  method: String
+  responseAccessor: String
+) on FIELD_DEFINITION
 
 type Product {
   id: Int
@@ -7,12 +12,27 @@ type Product {
   price: Float
 }
 
-extend type Order {
-  product: Product
+extend type User {
+  collections(userId: Int!): [Product] @rest(
+    endpoint: "endpoint2001"
+    path: "/users/:userId/products"
+  )
 }
 
-extend type User {
-  collections: [Product]
+extend type Order {
+  product(orderId: Int!): Product @rest(
+    endpoint: "endpoint2001"
+    path: "/orders/:orderId/products"
+    responseAccessor: "[0]"
+  )
+}
+
+input ProductInput {
+  title: String!
+  description: String
+  price: Float!
+  userId: Int
+  orderId: Int
 }
 
 extend type Query {
@@ -20,8 +40,21 @@ extend type Query {
     endpoint: "endpoint2001"
     path: "/products/:productId"
   )
-  products(productIds: [Int]): [Product] @rest(
+  products: [Product] @rest(
     endpoint: "endpoint2001"
     path: "/products"
+  )
+}
+
+extend type Mutation {
+  createProduct(body: ProductInput): Product @rest(
+    endpoint: "endpoint2001"
+    path: "/products"
+    method: "post"
+  )
+  updateProduct( productId: Int! body: ProductInput ): Product @rest(
+    endpoint: "endpoint2001"
+    path: "/products/:productId"
+    method: "patch"
   )
 }
