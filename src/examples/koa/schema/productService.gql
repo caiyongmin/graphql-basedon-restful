@@ -5,22 +5,30 @@ directive @rest(
   responseAccessor: String
 ) on FIELD_DEFINITION
 
+enum ProductSize {
+  M
+  L
+  XL
+  XXL
+}
+
 type Product {
   id: Int
   title: String
   description: String
   price: Float
+  size: ProductSize
 }
 
 extend type User {
-  collections(userId: Int!): [Product] @rest(
+  collections(userId: Int): [Product] @rest(
     endpoint: "endpoint2001"
     path: "/users/:userId/products"
   )
 }
 
 extend type Order {
-  product(orderId: Int!): Product @rest(
+  product(orderId: Int): Product @rest(
     endpoint: "endpoint2001"
     path: "/orders/:orderId/products"
     responseAccessor: "[0]"
@@ -31,6 +39,7 @@ input ProductInput {
   title: String!
   description: String
   price: Float!
+  size: ProductSize!
   userId: Int
   orderId: Int
 }

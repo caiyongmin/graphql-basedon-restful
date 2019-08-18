@@ -1,5 +1,71 @@
 {
-  "users": [],
-  "orders": [],
-  "products": []
+  "users": [
+    {
+      "name": "gogogo1",
+      "orderId": 1,
+      "productId": 1,
+      "id": 1
+    },
+    {
+      "name": "gogogo2",
+      "orderId": 2,
+      "productId": 2,
+      "id": 2
+    },
+    {
+      "name": "gogogo3",
+      "orderId": 3,
+      "productId": 3,
+      "id": 3
+    }
+  ],
+  "orders": [
+    {
+      "created": 9020,
+      "price": 10.1,
+      "userId": 1,
+      "productId": 1,
+      "id": 1
+    },
+    {
+      "created": 9022,
+      "price": 10.2,
+      "userId": 2,
+      "productId": 2,
+      "id": 2
+    },
+    {
+      "created": 9023,
+      "price": 10.3,
+      "userId": 3,
+      "productId": 3,
+      "id": 3
+    }
+  ],
+  "products": [
+    {
+      "title": "product01",
+      "description": "product01 description",
+      "price": 10.1,
+      "orderId": 1,
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "title": "product02",
+      "description": "product02 description",
+      "price": 10.2,
+      "orderId": 2,
+      "userId": 2,
+      "id": 2
+    },
+    {
+      "title": "product03",
+      "description": "product03 description",
+      "price": 10.3,
+      "orderId": 3,
+      "userId": 3,
+      "id": 3
+    }
+  ]
 }

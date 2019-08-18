@@ -11,7 +11,7 @@ type User {
 }
 
 extend type Order {
-  user(orderId: Int!): User @rest(
+  user(orderId: Int): User @rest(
     endpoint: "endpoint2001"
     path: "/orders/:orderId/users"
     responseAccessor: "[0]"
@@ -19,15 +19,18 @@ extend type Order {
 }
 
 extend type Product {
-  users(productId: Int!): [User] @rest(
+  users(productId: Int): [User] @rest(
     endpoint: "endpoint2001"
     path: "/products/:productId/users"
   )
 }
 
+# 创建一个用户信息时，要传入的参数
 input UserInput {
   name: String!
+  # 提前记录设想好的 orderId 信息
   orderId: Int
+  # 提前记录设想好的 productId 信息
   productId: Int
 }
 

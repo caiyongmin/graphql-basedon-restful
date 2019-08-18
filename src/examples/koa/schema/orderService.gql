@@ -5,34 +5,36 @@ directive @rest(
   responseAccessor: String
 ) on FIELD_DEFINITION
 
+scalar Date
+
 type Order {
   id: Int
-  created: Int
+  created: Date
   price: Float
 }
 
 extend type User {
-  orders(userId: Int!): [Order] @rest(
+  orders(userId: Int): [Order] @rest(
     endpoint: "endpoint2001"
     path: "/users/:userId/orders"
   )
 }
 
 extend type Product {
-  orders(productId: Int!): [Order] @rest(
+  orders(productId: Int): [Order] @rest(
     endpoint: "endpoint2001"
     path: "/products/:productId/orders"
   )
 }
 
 input OrderInput {
-  created: Int!
+  created: Date!
   price: Float!
   userId: Int
   productId: Int
 }
 
-extend type Query {
+type Query {
   order(orderId: Int!): Order @rest(
     endpoint: "endpoint2001"
     path: "/orders/:orderId"
@@ -43,7 +45,7 @@ extend type Query {
   )
 }
 
-extend type Mutation {
+type Mutation {
   createOrder(body: OrderInput): Order @rest(
     endpoint: "endpoint2001"
     path: "/orders"

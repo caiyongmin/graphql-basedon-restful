@@ -18,10 +18,15 @@ export default class RestDirective extends SchemaDirectiveVisitor {
         const { params = {}, body = {}, ...pathArgs } = args;
         const { endpointMap } = context;
         const host = endpointMap[endpoint];
+
+        if (!host) {
+          throw new Error('server host is empty, checkout the endpoint and endpointMap config!');
+        }
+
         const url = host + (new RouteParser(path)).reverse(pathArgs);
+
         console.info('===params, body, pathArgs===', params, body, pathArgs);
         console.info('===url===', url);
-
         const result = await axios({ method, url, params, data: body });
         const data = result.data;
         if (typeof responseAccessor === 'string' && responseAccessor) {
