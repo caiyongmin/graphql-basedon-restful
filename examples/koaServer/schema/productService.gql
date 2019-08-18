@@ -2,6 +2,7 @@ directive @rest(
   endpoint: String
   path: String
   method: String
+  rootAccessorMap: String
   responseAccessor: String
 ) on FIELD_DEFINITION
 
@@ -24,6 +25,7 @@ extend type User {
   collections(userId: Int): [Product] @rest(
     endpoint: "endpoint2001"
     path: "/users/:userId/products"
+    rootAccessorMap: "{ id, userId }"
   )
 }
 
@@ -31,6 +33,7 @@ extend type Order {
   product(orderId: Int): Product @rest(
     endpoint: "endpoint2001"
     path: "/orders/:orderId/products"
+    rootAccessorMap: "{ id, orderId }"
     responseAccessor: "[0]"
   )
 }

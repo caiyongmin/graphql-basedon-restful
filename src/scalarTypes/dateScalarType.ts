@@ -3,12 +3,12 @@ import { Kind } from 'graphql/language';
 
 export default new GraphQLScalarType({
   name: 'Date',
-  description: 'Description of date custom scalar type',
+  description: 'Description of date scalar type',
   serialize(value: number) {
-    return new Date(value);  // value from the client
+    return new Date(value);
   },
   parseValue(value: Date) {
-    return value.getTime();  // value sent to the client
+    return value.getTime();
   },
   parseLiteral(ast: { [key: string]: any }) {
     if (ast.kind === Kind.INT) {

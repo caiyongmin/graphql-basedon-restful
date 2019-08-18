@@ -245,7 +245,7 @@
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@types/http-assert/-/http-assert-1.5.0.tgz#56c95c69b51e7168b0d6727005d1fb2a00aaef94"
 
-"@types/json-server@^0.14.0":
+"@types/json-server@~0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@types/json-server/-/json-server-0.14.0.tgz#7f959205f2da275b2cbc6f4daa563c553d7a78b7"
   dependencies:
@@ -275,13 +275,13 @@
   dependencies:
     "@types/koa" "*"
 
-"@types/koa-router@^7.0.42":
+"@types/koa-router@~7.0.42":
   version "7.0.42"
   resolved "https://registry.yarnpkg.com/@types/koa-router/-/koa-router-7.0.42.tgz#0e5c01d4d0a2873d402d432114f08372d7c50eb1"
   dependencies:
     "@types/koa" "*"
 
-"@types/koa@*", "@types/koa@^2.0.46", "@types/koa@^2.0.49":
+"@types/koa@*", "@types/koa@^2.0.46", "@types/koa@~2.0.49":
   version "2.0.49"
   resolved "https://registry.yarnpkg.com/@types/koa/-/koa-2.0.49.tgz#8ffc2ddbdd715a2c392a218c67e116cb07007234"
   dependencies:
@@ -298,9 +298,9 @@
   dependencies:
     "@types/koa" "*"
 
-"@types/lodash@^4.14.136":
-  version "4.14.136"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.136.tgz#413e85089046b865d960c9ff1d400e04c31ab60f"
+"@types/lodash@~4.14.136":
+  version "4.14.137"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.137.tgz#8a4804937dc6462274ffcc088df8f14fc1b368e2"
 
 "@types/long@^4.0.0":
   version "4.0.0"
@@ -343,7 +343,7 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/route-parser@^0.1.3":
+"@types/route-parser@~0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@types/route-parser/-/route-parser-0.1.3.tgz#f8af16886ebe0b525879628c04f81433ac617af0"
 
@@ -428,7 +428,7 @@ anymatch@^1.3.0:
     micromatch "^2.1.5"
     normalize-path "^2.0.0"
 
-apollo-cache-control@0.8.1, apollo-cache-control@^0.8.1:
+apollo-cache-control@0.8.1, apollo-cache-control@~0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/apollo-cache-control/-/apollo-cache-control-0.8.1.tgz#707c0b958c02c5b47ddf49a02f60ea88a64783fb"
   dependencies:
@@ -1079,7 +1079,7 @@ cors@^2.8.5:
     object-assign "^4"
     vary "^1"
 
-cpx@^1.5.0:
+cpx@~1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/cpx/-/cpx-1.5.0.tgz#185be018511d87270dedccc293171e37655ab88f"
   dependencies:
@@ -1772,7 +1772,7 @@ graphql-tools@^4.0.0, graphql-tools@~4.0.5:
     iterall "^1.1.3"
     uuid "^3.1.0"
 
-graphql-type-json@^0.3.0:
+graphql-type-json@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/graphql-type-json/-/graphql-type-json-0.3.0.tgz#bb32e1b74bf52ebc690f9df12b4067bc061f818a"
 
@@ -1785,7 +1785,7 @@ graphql-upload@^8.0.2:
     http-errors "^1.7.2"
     object-path "^0.11.4"
 
-graphql-voyager@^1.0.0-rc.27:
+graphql-voyager@~1.0.0-rc.27:
   version "1.0.0-rc.27"
   resolved "https://registry.yarnpkg.com/graphql-voyager/-/graphql-voyager-1.0.0-rc.27.tgz#be5133d27a0981d9b7bb5670e446ffe55336bbba"
   dependencies:
@@ -2267,7 +2267,7 @@ json-schema@0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
 
-json-server@^0.15.0:
+json-server@~0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/json-server/-/json-server-0.15.0.tgz#b8b0840077e46f15608e9eff2c34fc4d63d19139"
   dependencies:
@@ -2406,7 +2406,7 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
 
-koa-router@^7.4.0:
+koa-router@^7.4.0, koa-router@~7.4.0:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/koa-router/-/koa-router-7.4.0.tgz#aee1f7adc02d5cb31d7d67465c9eacc825e8c5e0"
   dependencies:
@@ -3277,7 +3277,7 @@ rimraf@^2.6.1:
   dependencies:
     glob "^7.1.3"
 
-route-parser@^0.0.5:
+route-parser@~0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/route-parser/-/route-parser-0.0.5.tgz#7d1d09d335e49094031ea16991a4a79b01bbe1f4"
 

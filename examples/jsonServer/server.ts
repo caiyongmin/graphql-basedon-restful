@@ -11,5 +11,5 @@ server.use(middleware);
 server.use(router);
 server.use(jsonServer.bodyParser);
 server.listen(port, () => {
-  console.log(`JSON Server is running: http://127.0.0.1:${port}`);
+  console.log(`JSON Server is running on: http://127.0.0.1:${port}`);
 });

@@ -4,13 +4,13 @@ import { fileLoader, mergeTypes } from 'merge-graphql-schemas';
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 import { RestDirective } from './directives';
 import { dateScalarType } from './scalarTypes';
-import 'apollo-cache-control';
 
 export function createApolloServer(config: {
   schemaDir: string;
-  endpointMap: { [key: string]: string }
+  endpointMap: { [key: string]: string };
+  mocks: boolean | { [ key: string ]: any };
 }) {
-  const { schemaDir, endpointMap } = config;
+  const { schemaDir, endpointMap, mocks } = config;
   const typesArray = fileLoader(schemaDir, { recursive: true });
   const typeDefs = mergeTypes(typesArray, { all: true });
   const schema: GraphQLSchema = makeExecutableSchema({
@@ -19,28 +19,22 @@ export function createApolloServer(config: {
       rest: RestDirective
     },
   });
-  addMockFunctionsToSchema({
-    schema,
-    mocks: {
-      Date: () => +new Date(),
-      order: () => ({
-        id: 1,
-        created: +new Date(),
-        price: 10.1,
-      }),
-    },
-    preserveResolvers: true,
-  });
-  const resolverFunctions = {
-    Date: dateScalarType,
-  };
+
+  if (mocks) {
+    addMockFunctionsToSchema({
+      schema,
+      mocks: typeof mocks === 'boolean' ? {} : mocks,
+      preserveResolvers: true,
+    });
+  }
 
   return new ApolloServer({
     schema,
     context: ({ req }) => ({
       endpointMap
     }),
-    // cacheControl: true,
-    resolvers: resolverFunctions,
+    resolvers: {
+      Date: dateScalarType,
+    },
   });
 };

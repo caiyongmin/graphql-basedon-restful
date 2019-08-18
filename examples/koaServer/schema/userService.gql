@@ -2,6 +2,7 @@ directive @rest(
   endpoint: String
   path: String
   method: String
+  rootAccessorMap: String
   responseAccessor: String
 ) on FIELD_DEFINITION
 
@@ -14,6 +15,7 @@ extend type Order {
   user(orderId: Int): User @rest(
     endpoint: "endpoint2001"
     path: "/orders/:orderId/users"
+    rootAccessorMap: "{ id, orderId }"
     responseAccessor: "[0]"
   )
 }
@@ -22,15 +24,13 @@ extend type Product {
   users(productId: Int): [User] @rest(
     endpoint: "endpoint2001"
     path: "/products/:productId/users"
+    rootAccessorMap: "{ id, productId }"
   )
 }
 
-# 创建一个用户信息时，要传入的参数
 input UserInput {
   name: String!
-  # 提前记录设想好的 orderId 信息
   orderId: Int
-  # 提前记录设想好的 productId 信息
   productId: Int
 }
 
