@@ -1,6 +1,6 @@
 # GraphQL-Basedon-RESTful
 
-showcase about GraphQL server based on RESTful API server with focus on easy setup, performance and great developer experience. See [this article](https://juejin.im/post/5d5ad1c15188255d75170ab0) for more information.
+showcase about GraphQL server based on RESTful API server with focus on easy setup, performance and great developer experience. See [this article](https://zhuanlan.zhihu.com/p/78962152) for more information.
 
 ## Run
 
