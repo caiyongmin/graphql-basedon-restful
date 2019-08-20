@@ -1,6 +1,6 @@
-# graphql-showcase
+# GraphQL-Basedon-RESTful
 
-showcase about GraphQL server with focus on easy setup, performance and great developer experience.
+showcase about GraphQL server based on RESTful API server with focus on easy setup, performance and great developer experience. See [this article](https://juejin.im/post/5d5ad1c15188255d75170ab0) for more information.
 
 ## Run
 
@@ -15,22 +15,15 @@ yarn run examples:koa
 yarn run start:json
 ```
 
-Tips: project does not have hot module reload, if you modify the code, you need to rebuild it.
+*Tips: project does not have hot module reload, if you have modify the code, you need to rebuild it & db.json will be reset.
 
-## ScreenShots
+## Refs
 
-create user
+Thank you here!
 
-![image.png](https://i.loli.net/2019/08/19/xNQUcrKVmGyC8vE.png)
+- [GraphQL-BFF：微服务背景下的前后端数据交互方案](https://zhuanlan.zhihu.com/p/75241522)
+- [第一届 GraphQLParty 首场工程实践图文版](https://zhuanlan.zhihu.com/p/38283930)
+- [GraphQL Tools - Schema directives](https://www.apollographql.com/docs/graphql-tools/schema-directives/)
+- [GraphQL Tools - Mocking](https://www.apollographql.com/docs/graphql-tools/mocking/)
 
-query user
-
-![query-user.png](https://i.loli.net/2019/08/19/W5PzLYGRslq89vf.png)
-
-query user graph
-
-![query-user-graph.png](https://i.loli.net/2019/08/19/JESfWdTwkDIn24g.png)
-
-api doc
-
-![api-doc.png](https://i.loli.net/2019/08/19/bRUpfcuNX5Dah9o.png)
+Welcome to commit issue and pull request!

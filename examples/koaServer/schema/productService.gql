@@ -2,7 +2,7 @@ directive @rest(
   endpoint: String
   path: String
   method: String
-  rootAccessorMap: String
+  parentAccessorMap: String
   responseAccessor: String
 ) on FIELD_DEFINITION
 
@@ -13,11 +13,17 @@ enum ProductSize {
   XXL
 }
 
+# 货品服务模块
 type Product {
+  # 货品 ID
   id: Int
+  # 货品名称
   title: String
+  # 货品描述
   description: String
+  # 货品价格
   price: Float
+  # 货品尺寸
   size: ProductSize
 }
 
@@ -25,7 +31,7 @@ extend type User {
   collections(userId: Int): [Product] @rest(
     endpoint: "endpoint2001"
     path: "/users/:userId/products"
-    rootAccessorMap: "{ id, userId }"
+    parentAccessorMap: "{ id: userId }"
   )
 }
 
@@ -33,7 +39,7 @@ extend type Order {
   product(orderId: Int): Product @rest(
     endpoint: "endpoint2001"
     path: "/orders/:orderId/products"
-    rootAccessorMap: "{ id, orderId }"
+    parentAccessorMap: "{ id: orderId }"
     responseAccessor: "[0]"
   )
 }

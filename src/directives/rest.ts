@@ -3,7 +3,7 @@ import { SchemaDirectiveVisitor } from 'graphql-tools';
 import axios from 'axios';
 import RouteParser from 'route-parser';
 import { get as _get, merge as _merge } from 'lodash';
-import { getArgsFromRoot } from './../shared/directives';
+import { getArgsFromParent } from './../shared/directives';
 
 export default class RestDirective extends SchemaDirectiveVisitor {
   public visitFieldDefinition(field: GraphQLField<any, any>): GraphQLField<any, any> | void | null {
@@ -12,20 +12,20 @@ export default class RestDirective extends SchemaDirectiveVisitor {
       path,
       method = 'get',
       responseAccessor,
-      rootAccessorMap,
+      parentAccessorMap,
     } = this.args;
 
-    field.resolve = async (root, args, context) => {
+    field.resolve = async (parent, args, context) => {
       try {
-        const rootArgs = getArgsFromRoot(root, rootAccessorMap);
-        const { params = {}, body = {}, ...pathArgs } = _merge({}, rootArgs, args);
+        const parentArgs = getArgsFromParent(parent, parentAccessorMap);
+        const { params = {}, body = {}, ...pathArgs } = _merge({}, parentArgs, args);
         const { endpointMap } = context;
         const host = endpointMap[endpoint];
 
         if (!host) {
           throw new Error(`
             when endpoint is ${endpoint} and endpointMap is ${endpointMap},
-            achieved service host is empty, please checkout the endpoint and endpointMap config
+            achieved service host is undefined, please checkout the endpoint and endpointMap config
           `);
         }
 

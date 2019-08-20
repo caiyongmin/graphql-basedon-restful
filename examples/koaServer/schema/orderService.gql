@@ -2,15 +2,19 @@ directive @rest(
   endpoint: String
   path: String
   method: String
-  rootAccessorMap: String
+  parentAccessorMap: String
   responseAccessor: String
 ) on FIELD_DEFINITION
 
 scalar Date
 
+# 订单服务模块
 type Order {
+  # 订单 ID
   id: Int
+  # 创建时间
   created: Date
+  # 订单价格
   price: Float
 }
 
@@ -18,7 +22,7 @@ extend type User {
   orders(userId: Int): [Order] @rest(
     endpoint: "endpoint2001"
     path: "/users/:userId/orders"
-    rootAccessorMap: "{ id, userId }"
+    parentAccessorMap: "{ id: userId }"
   )
 }
 
@@ -26,7 +30,7 @@ extend type Product {
   orders(productId: Int): [Order] @rest(
     endpoint: "endpoint2001"
     path: "/products/:productId/orders"
-    rootAccessorMap: "{ id, productId }"
+    parentAccessorMap: "{ id: productId }"
   )
 }
 

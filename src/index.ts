@@ -30,7 +30,7 @@ export function createApolloServer(config: {
 
   return new ApolloServer({
     schema,
-    context: ({ req }) => ({
+    context: () => ({
       endpointMap
     }),
     resolvers: {

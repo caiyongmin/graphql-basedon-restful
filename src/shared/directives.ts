@@ -1,20 +1,23 @@
 import { get as _get, set as _set } from 'lodash';
 
-export function getArgsFromRoot (root: { [key: string]: any }, rootAccessorMap: string) {
-  if (!root || !rootAccessorMap) {
+export function getArgsFromParent (parent: { [key: string]: any }, parentAccessorMap: string) {
+  if (!parent || !parentAccessorMap) {
     return null;
   }
 
   const result = {};
   try {
-    const arr = rootAccessorMap.replace(/(\s*)/g, '').match(/\{([^\}]*)\}/g);
+    const arr = parentAccessorMap
+      .replace(/(\s*)/g, '')  // 去除其中空字符
+      .replace(/^\{|\}$/g, '')  // 去除前后的中括号 { }
+      .split(',');  // 分离设置的每个属性
     arr.forEach((item: string) => {
-      const [ rootField, resultField ] = item.replace(/\{|\}/g, '').split(',');
-      _set(result, resultField, _get(root, rootField));
+      const [ parentField, resultField ] = item.split(':');
+      _set(result, resultField, _get(parent, parentField));
     });
     return result;
   }
   catch (_) {
-    return {};
+    return result;
   }
 }
