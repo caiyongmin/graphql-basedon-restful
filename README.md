@@ -24,6 +24,7 @@ Thank you here!
 - [GraphQL-BFF：微服务背景下的前后端数据交互方案](https://zhuanlan.zhihu.com/p/75241522)
 - [第一届 GraphQLParty 首场工程实践图文版](https://zhuanlan.zhihu.com/p/38283930)
 - [GraphQL Tools - Schema directives](https://www.apollographql.com/docs/graphql-tools/schema-directives/)
+- [the-power-of-graphql-directives](https://callstack.com/blog/the-power-of-graphql-directives/)
 - [GraphQL Tools - Mocking](https://www.apollographql.com/docs/graphql-tools/mocking/)
 
 Welcome to commit issue and pull request!
