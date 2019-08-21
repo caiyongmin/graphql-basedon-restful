@@ -9,10 +9,10 @@ Showcase about GraphQL server based on RESTful API server with focus on easy set
 yarn
 
 # run koa server
-yarn run examples:koa
+npm run examples:koa
 
 # run mock restful server
-yarn run start:json
+npm run start:json
 ```
 
 *Tips: project does not have hot module reload, if you have modify the code, you need to rebuild it & db.json will be reset.

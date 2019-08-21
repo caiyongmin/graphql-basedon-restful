@@ -1,11 +1,3 @@
-directive @rest(
-  endpoint: String
-  path: String
-  method: String
-  parentAccessorMap: String
-  responseAccessor: String
-) on FIELD_DEFINITION
-
 enum ProductSize {
   M
   L

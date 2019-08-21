@@ -1,14 +1,14 @@
 import { ApolloServer } from 'apollo-server-koa';
 import { GraphQLSchema } from 'graphql';
 import { fileLoader, mergeTypes } from 'merge-graphql-schemas';
-import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
+import { makeExecutableSchema, addMockFunctionsToSchema, IMocks } from 'graphql-tools';
 import { RestDirective } from './directives';
 import { dateScalarType } from './scalarTypes';
 
 export function createApolloServer(config: {
   schemaDir: string;
   endpointMap: { [key: string]: string };
-  mocks: boolean | { [ key: string ]: any };
+  mocks: boolean | IMocks;
 }) {
   const { schemaDir, endpointMap, mocks } = config;
   const typesArray = fileLoader(schemaDir, { recursive: true });

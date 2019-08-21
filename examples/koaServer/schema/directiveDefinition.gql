@@ -1,0 +1,7 @@
+directive @rest(
+  endpoint: String
+  path: String
+  method: String
+  responseAccessor: String
+  parentAccessorMap: String
+) on FIELD_DEFINITION

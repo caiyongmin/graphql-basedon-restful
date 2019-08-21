@@ -1,11 +1,3 @@
-directive @rest(
-  endpoint: String
-  path: String
-  method: String
-  parentAccessorMap: String
-  responseAccessor: String
-) on FIELD_DEFINITION
-
 scalar Date
 
 # 订单服务模块
