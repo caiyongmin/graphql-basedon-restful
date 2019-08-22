@@ -4,6 +4,7 @@ import axios from 'axios';
 import RouteParser from 'route-parser';
 import { get as _get, merge as _merge } from 'lodash';
 import { getArgsFromParent } from './../shared/directives';
+import { isArrayPathString, parseArrayPathString } from './../shared/parse';
 
 export default class RestDirective extends SchemaDirectiveVisitor {
   public visitFieldDefinition(field: GraphQLField<any, any>): GraphQLField<any, any> | void | null {
@@ -33,8 +34,13 @@ export default class RestDirective extends SchemaDirectiveVisitor {
         const result = await axios({ method, url, params, data: body });
         const data = result.data;
 
-        // if responseAccessor is string type, and has a valid value
+        // if responseAccessor is normal string or array path string
         if (typeof responseAccessor === 'string' && responseAccessor) {
+          // responseAccessor is array path string
+          if (isArrayPathString(responseAccessor)) {
+            return _get(data, parseArrayPathString(responseAccessor));
+          }
+          // responseAccessor is normal string
           return _get(data, responseAccessor);
         }
         return data;
