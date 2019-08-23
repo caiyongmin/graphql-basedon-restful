@@ -17,14 +17,20 @@ npm run start:json
 
 *Tips: project does not have hot module reload, if you have modify the code, you need to rebuild it & db.json will be reset.
 
-## Usage
+## Examples
 
-**[Altair GraphQL Client](https://altair.sirmuel.design) is recommended for debugging.**
+- [create user](#create-user)
+- [query user](#query-user)
+- [query user graph](#query-user-graph)
+
+[Altair GraphQL Client](https://altair.sirmuel.design) is recommended for debugging.
 
 ### Create user
 
+<a href="#examples" style="font-size: 14px">↥ back to examples</a>
+
 ```gql
-mutation CreateUser($body: UserInput!) {
+mutation createUser($body: UserInput!) {
   createUser(body: $body) {
     name
   }
@@ -43,9 +49,11 @@ variables:
 }
 ```
 
-![create user](./guide/create-user-2.png)
+![create user](./guide/create-user.png)
 
 ### Query user
+
+<a href="#examples" style="font-size: 14px">↥ back to examples</a>
 
 ```gql
 query {
@@ -55,36 +63,29 @@ query {
 }
 ```
 
-![query user](./guide/query-user-2.png)
+![query user](./guide/query-user.png)
 
 ### Query user graph
 
+<a href="#examples" style="font-size: 14px">↥ back to examples</a>
+
 ```gql
-query userInfo($uid: Int!) {
-  user(userId: $uid) {
+query {
+  user(userId: 1) {
     name
     orders {
       price
       user {
         name
+        orders {
+          price
+        }
       }
     }
     collections {
-      id
-      description
-      users {
-        name
-      }
+      title
     }
   }
-}
-```
-
-variables:
-
-```json
-{
-  "uid": 1
 }
 ```
 
