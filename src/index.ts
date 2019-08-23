@@ -4,6 +4,7 @@ import { fileLoader, mergeTypes } from 'merge-graphql-schemas';
 import { makeExecutableSchema, addMockFunctionsToSchema, IMocks } from 'graphql-tools';
 import { RestDirective } from './directives';
 import { dateScalarType } from './scalarTypes';
+import { createRestLoader } from './shared/directives';
 
 export function createApolloServer(config: {
   schemaDir: string;
@@ -31,7 +32,9 @@ export function createApolloServer(config: {
   return new ApolloServer({
     schema,
     context: () => ({
-      endpointMap
+      endpointMap,
+      // TODO: permission verification will be added
+      restLoader: createRestLoader(),
     }),
     resolvers: {
       Date: dateScalarType,

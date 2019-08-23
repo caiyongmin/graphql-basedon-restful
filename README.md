@@ -17,6 +17,79 @@ npm run start:json
 
 *Tips: project does not have hot module reload, if you have modify the code, you need to rebuild it & db.json will be reset.
 
+## Usage
+
+**[Altair GraphQL Client](https://altair.sirmuel.design) is recommended for debugging.**
+
+### Create user
+
+```gql
+mutation CreateUser($body: UserInput!) {
+  createUser(body: $body) {
+    name
+  }
+}
+```
+
+variables:
+
+```json
+{
+  "body": {
+    "name": "gogogo111",
+    "orderId": 1,
+    "productId": 1
+  }
+}
+```
+
+![create user](./guide/create-user-2.png)
+
+### Query user
+
+```gql
+query {
+  user(userId: 1) {
+    name
+  }
+}
+```
+
+![query user](./guide/query-user-2.png)
+
+### Query user graph
+
+```gql
+query userInfo($uid: Int!) {
+  user(userId: $uid) {
+    name
+    orders {
+      price
+      user {
+        name
+      }
+    }
+    collections {
+      id
+      description
+      users {
+        name
+      }
+    }
+  }
+}
+```
+
+variables:
+
+```json
+{
+  "uid": 1
+}
+```
+
+![query-user-graph](./guide/query-user-graph.png)
+
 ## Refs
 
 Thank you here!

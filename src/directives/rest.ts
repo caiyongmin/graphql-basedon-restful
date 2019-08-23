@@ -1,6 +1,5 @@
 import { GraphQLField } from 'graphql';
 import { SchemaDirectiveVisitor } from 'graphql-tools';
-import axios from 'axios';
 import RouteParser from 'route-parser';
 import { get as _get, merge as _merge } from 'lodash';
 import { getArgsFromParent } from './../shared/directives';
@@ -20,7 +19,7 @@ export default class RestDirective extends SchemaDirectiveVisitor {
       try {
         const parentArgs = getArgsFromParent(parent, parentAccessorMap);
         const { params = {}, body = {}, ...pathArgs } = _merge({}, parentArgs, args);
-        const { endpointMap } = context;
+        const { endpointMap, restLoader } = context;
         const host = endpointMap[endpoint];
 
         if (!host) {
@@ -31,8 +30,8 @@ export default class RestDirective extends SchemaDirectiveVisitor {
         }
 
         const url = host + (new RouteParser(path)).reverse(pathArgs);
-        const result = await axios({ method, url, params, data: body });
-        const data = result.data;
+        const result = await restLoader({ method, url, params, data: body });
+        const data = result && result.data;
 
         // if responseAccessor is normal string or array path string
         if (typeof responseAccessor === 'string' && responseAccessor) {
