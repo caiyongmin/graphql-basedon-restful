@@ -4,7 +4,7 @@ import {
   lowerCase as _lowerCase,
 } from 'lodash';
 import { isArrayPathString, parseArrayPathString } from './parse';
-import axios, { Method, AxiosPromise } from 'axios';
+import axios, { Method } from 'axios';
 import DataLoader, { CacheMap } from 'dataloader';
 
 /**
@@ -14,24 +14,16 @@ import DataLoader, { CacheMap } from 'dataloader';
  * @param parent parent data
  * @param parentAccessorMap parameter name mappings, separate with semicolon
  */
-export function getArgsFromParent (parent: { [key: string]: any }, parentAccessorMap: string) {
+export function getArgsFromParent (parent: { [key: string]: any }, parentAccessorMap: { [key: string]: any }) {
   if (!parent || !parentAccessorMap) {
     return null;
   }
 
   const result = {};
   try {
-    const arr = parentAccessorMap
-      .replace(/(\s*)/g, '')  // remove space characters
-      .replace(/^\{|\}$/g, '')  // remove the brackets before and after
-      .split(';');  // separate each set of parameters
-    arr.forEach((item: string) => {
-      if (item) {
-        let [ parentField, resultField ] = item.split(':');
-        // if parentField is array path string
-        if (isArrayPathString(parentField)) {
-          parentField = parseArrayPathString(parentField);
-        }
+    Object.keys(parentAccessorMap).forEach((parentField: string) => {
+      if (parentField) {
+        let resultField = parentAccessorMap[parentField];
         // if resultField is array path string
         if (isArrayPathString(resultField)) {
           resultField = parseArrayPathString(resultField);

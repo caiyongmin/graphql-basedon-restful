@@ -1,7 +1,13 @@
+input ParentAccessorMapInput {
+  # ParentAccessorMapInput field define
+  # if you want to define a new field in ParentAccessorMapInput, you should first define it here
+  id: String
+}
+
 directive @rest(
   endpoint: String
   path: String
   method: String
   responseAccessor: String
-  parentAccessorMap: String
+  parentAccessorMap: ParentAccessorMapInput
 ) on FIELD_DEFINITION

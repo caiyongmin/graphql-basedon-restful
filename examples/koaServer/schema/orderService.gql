@@ -14,7 +14,9 @@ extend type User {
   orders(userId: Int): [Order] @rest(
     endpoint: "endpoint2001"
     path: "/users/:userId/orders"
-    parentAccessorMap: "{ id: userId }"
+    parentAccessorMap: {
+      id: "userId"
+    }
   )
 }
 
@@ -22,7 +24,9 @@ extend type Product {
   orders(productId: Int): [Order] @rest(
     endpoint: "endpoint2001"
     path: "/products/:productId/orders"
-    parentAccessorMap: "{ id: productId }"
+    parentAccessorMap: {
+      id: "productId"
+    }
   )
 }
 
