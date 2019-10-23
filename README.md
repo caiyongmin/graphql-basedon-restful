@@ -1,6 +1,6 @@
 # GraphQL-Basedon-RESTful
 
-Showcase about GraphQL server based on RESTful API server with focus on easy setup, performance and great developer experience. see [this article](https://zhuanlan.zhihu.com/p/78962152) for more information.
+Showcase about GraphQL server based on RESTful API server with focus on easy setup, performance and great developer experience. see this article([基于 RESTful API 的 GraphQL 服务构建](https://zhuanlan.zhihu.com/p/78962152)) for more information.
 
 ## Run
 
@@ -19,9 +19,10 @@ npm run start:json
 
 ## Examples
 
-- [create user](#create-user)
-- [query user](#query-user)
-- [query user graph](#query-user-graph)
+- [mutation: create user](#create-user)
+- [query: query user](#query-user)
+- [graph query: user graph](#query-user-graph)
+- [N+1 problem example](#n1-problem)
 
 [Altair GraphQL Client](https://altair.sirmuel.design) is recommended for debugging.
 
@@ -90,6 +91,31 @@ query {
 ```
 
 ![query-user-graph](./guide/query-user-graph.png)
+
+### N+1 Problem
+
+<a href="#examples" style="font-size: 14px">↥ back to examples</a>
+
+```gql
+query {
+  products {
+    id
+    title
+    users(productId: 1) {
+      name
+    }
+  }
+}
+```
+
+```bash
+# product users will only request once, not three
+
+GET /products 200 3.528 ms - 437
+GET /products/1/users 200 4.274 ms - 84
+```
+
+![n+1-problem](./guide/n+1-problem.png)
 
 ## Refs
 
